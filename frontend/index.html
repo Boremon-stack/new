@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vault: Quantum-Geo Edition</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <h1>VAULT <span class="edition">QUANTUM-GEO</span></h1>
+            <div class="status-indicator">SYSTEM SECURE</div>
+        </header>
+
+        <main>
+            <div class="compass-container">
+                <div class="compass-ring"></div>
+                <div class="cardinal-node north" id="node-north">
+                    <span class="label">N</span>
+                    <span class="status">PENDING</span>
+                </div>
+                <div class="cardinal-node east" id="node-east">
+                    <span class="label">E</span>
+                    <span class="status">PENDING</span>
+                </div>
+                <div class="cardinal-node south" id="node-south">
+                    <span class="label">S</span>
+                    <span class="status">PENDING</span>
+                </div>
+                <div class="cardinal-node west" id="node-west">
+                    <span class="label">W</span>
+                    <span class="status">PENDING</span>
+                </div>
+                <div class="center-core">
+                    <div class="quantum-fluctuation"></div>
+                </div>
+            </div>
+
+            <div class="controls">
+                <button id="btn-collapse" class="glow-button">INITIATE QUANTUM COLLAPSE</button>
+            </div>
+
+            <div class="log-panel">
+                <h3>SYSTEM LOGS</h3>
+                <ul id="system-logs">
+                    <li>System Initialized...</li>
+                    <li>Waiting for Quantum Source...</li>
+                </ul>
+            </div>
+        </main>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
