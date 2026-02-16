@@ -4,7 +4,7 @@ Layer (MAIS)
 > **Security through Geographic Distribution & Quantum Uncertainty**
 
 ## Overview
-Vault: Quantum-Geo Edition is a high-security storage system designed for high-value individuals. It leverages true randomness from quantum vacuum fluctuations and geographic sharding to securing secrets.
+Multi-Authority Identity Security Layer (MAIS) is a high-security storage system designed for high-value individuals. It leverages true randomness from quantum vacuum fluctuations and geographic sharding to securing secrets.
 
 ## Core Architecture: The "Quantum Tree"
 1.  **Level 1: District Nodes (Leaves)**: Local storage points (devices, trusted contacts).
