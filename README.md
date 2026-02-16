@@ -1,5 +1,4 @@
-# Multi-Authority Identity Security
-Layer (MAIS)
+# Multi-Authority Identity Security Layer (MAIS)
 
 > **Security through Geographic Distribution & Quantum Uncertainty**
 
