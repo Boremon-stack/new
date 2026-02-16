@@ -1,4 +1,5 @@
-# Vault: Quantum-Geo Edition
+# Multi-Authority Identity Security
+Layer (MAIS)
 
 > **Security through Geographic Distribution & Quantum Uncertainty**
 
