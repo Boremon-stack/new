@@ -50,8 +50,12 @@ Multi-Authority Identity Security Layer (MAIS) is a high-security storage system
 3.  **Launch Dashboard**:
     Open `frontend/index.html` in your browser.
 
-## API Reference
+## Reference
 - **ANU Quantum Random Numbers API**: https://quantumnumbers.anu.edu.au/
+- **UIDAI – Aadhaar & CIDR identity architecture
+- **DigiLocker – Centralized document storage model
+- **Australian National University – Quantum Random Number Generator (ANU QRNG API)
+- **Threshold Cryptography – Multi-party key control (M-of-N)
 
 ## License
 MIT
