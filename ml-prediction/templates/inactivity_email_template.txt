@@ -1,0 +1,14 @@
+Hello {{recipientName}},
+
+This is an automated inactivity notice from Lakshya Finance Studio.
+
+No login activity has been detected for 48 days.
+
+Asset summary:
+{{assetList}}
+
+Message:
+{{customMessage}}
+
+Regards,
+Lakshya Srivastav

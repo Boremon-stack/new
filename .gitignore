@@ -1,0 +1,10 @@
+# Python cache and environments
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Local ML artifacts
+ml-prediction/models/*.joblib
+ml-prediction/models/metrics.txt
+.vercel
