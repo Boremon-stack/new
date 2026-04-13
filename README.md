@@ -14,6 +14,7 @@ https://finnexus-one.vercel.app/
 - Customizable inactivity email template and preview
 - Vercel-ready deployment setup
 - Isolated ML workspace in `ml-prediction/`
+  https://docs.google.com/presentation/d/1x66JcLwuZ90mf_LZDAmqI10f3U_JQnVd/edit?slide=id.p3#slide=id.p3
 
 ## Login Credentials (current demo)
 
