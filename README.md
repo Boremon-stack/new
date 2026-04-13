@@ -1,6 +1,7 @@
 # FinNexus
 
 FinNexus is a minimal finance web app with a secure-style login, a 20-question financial condition quiz, and budget automation recommendations.
+https://finnexus-one.vercel.app/
 
 ## What it includes
 
