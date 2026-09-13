@@ -1,0 +1,153 @@
+/* Nominee Vault layout only. Colours, buttons, fields and badges stay in
+   styles.css -- everything here is geometry for the countdown, the template
+   editor and the email preview. */
+
+.nv {
+  width: 100%;
+  max-width: 760px;
+  min-width: 0;
+}
+
+.nv__head-text { min-width: 0; }
+
+/* ---------- FR-NV-03 countdown ---------- */
+
+.nv__clock {
+  display: grid;
+  gap: 6px;
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--well);
+}
+
+.nv__clock-k {
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+/* clamp() keeps the 15-character string on one line down to 375px. */
+.nv__clock-v {
+  font-family: var(--mono);
+  font-size: clamp(21px, 6.4vw, 38px);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  overflow-x: auto;
+  color: var(--accent);
+}
+
+.nv__fired {
+  padding: 12px 14px;
+  border: 1px solid var(--danger);
+  border-radius: var(--radius-sm);
+  background: var(--danger-bg);
+  font-size: 13.5px;
+}
+
+/* Reserves its own line and is never display:none -- a live region has to be
+   in the accessibility tree BEFORE the text lands, or the update is not
+   announced. */
+.nv__notice {
+  min-height: 1.2em;
+  font-size: 13px;
+  color: var(--accent-2);
+}
+
+/* ---------- FR-NV-06 template editor ---------- */
+
+/* A label on the left, its shortcut button on the right, wrapping at 375px. */
+.nv__field-head {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nv__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+/* Soft-wrapped on purpose: a nowrap template editor scrolls sideways at 375px
+   (NFR-09), and the stored value keeps its real newlines either way. */
+.nv__template {
+  font-family: var(--mono);
+  font-size: 12.5px;
+  line-height: 1.55;
+  min-height: 220px;
+}
+
+.nv__draft { text-decoration: none; }
+.nv__draft[aria-disabled='true'] { opacity: 0.45; cursor: not-allowed; }
+
+/* ---------- FR-NV-07 email preview ---------- */
+
+.nv__mail {
+  display: grid;
+  gap: 8px;
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--surface-3);
+  min-width: 0;
+}
+
+.nv__mail-head {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.nv__mail .kv__v {
+  text-align: right;
+  overflow-wrap: anywhere;
+}
+
+/* The rendered letter: line breaks survive, long tokens wrap rather than
+   pushing the panel sideways. */
+.nv__body {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 12.5px;
+  line-height: 1.6;
+  color: var(--ink-2);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+/* ---------- dispatch history ---------- */
+
+.nv__log {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 8px;
+}
+
+.nv__log-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 10px;
+  align-items: center;
+  padding: 8px 10px;
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius-sm);
+  background: var(--well);
+}
+
+.nv__log-to {
+  margin-left: auto;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 420px) {
+  .nv__template { min-height: 180px; }
+  .nv__log-to { margin-left: 0; }
+}

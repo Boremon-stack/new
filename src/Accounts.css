@@ -1,0 +1,81 @@
+/* Accounts module: layout only. Colours, buttons, fields and badges come from styles.css. */
+
+/* Live region stays in the DOM even when empty; it collapses to zero height. */
+.acct__live { display: grid; justify-items: start; }
+.acct__live .badge { max-width: 100%; }
+
+/* FR-LINK-05 summary strip. */
+.acct__summary {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(auto-fit, minmax(148px, 1fr));
+}
+
+/* Inline expanding form -- not an overlay; the Settings panel owns the only modal. */
+.acct__form {
+  display: grid;
+  gap: 12px;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: rgb(255 255 255 / 2%);
+}
+
+.acct__formhead {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.acct__formtitle { font-size: 14px; }
+.acct__formnote { font-size: 12px; color: var(--ink-3); }
+.acct__formact { display: flex; flex-wrap: wrap; gap: 8px; }
+
+/* FR-LINK-04 account rows. */
+.acct__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.acct__row {
+  display: grid;
+  gap: 10px 14px;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  align-items: center;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--surface-3);
+}
+
+.acct__main { min-width: 0; display: grid; gap: 6px; }
+
+.acct__inst {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  font-weight: 650;
+  overflow-wrap: anywhere;
+}
+
+.acct__meta { display: flex; flex-wrap: wrap; gap: 6px; min-width: 0; }
+.acct__meta .tag { overflow-wrap: anywhere; }
+
+.acct__val { min-width: 0; text-align: right; }
+.acct__valk { font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-3); }
+.acct__valv { font-family: var(--mono); font-size: 15px; font-weight: 600; }
+
+.acct__act { display: flex; }
+
+/* NFR-09: rows stack at 375px with no horizontal scroll. */
+@media (max-width: 560px) {
+  .acct__row { grid-template-columns: minmax(0, 1fr); }
+  .acct__val { text-align: left; }
+  .acct__act { justify-self: start; }
+}

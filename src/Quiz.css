@@ -1,0 +1,110 @@
+/* Risk Profile Quiz -- layout only. Colours, buttons, badges, meters and
+   spacing tokens all come from src/styles.css. */
+
+.quiz__progress { display: grid; gap: 8px; }
+
+.quiz__progress-head {
+  display: flex; flex-wrap: wrap; gap: 8px; align-items: center; justify-content: space-between;
+}
+
+.quiz__count { font-family: var(--mono); font-size: 12px; color: var(--ink-2); }
+
+/* ---------- question card ---------- */
+
+.quiz__card {
+  margin: 0;
+  padding: 16px;
+  min-width: 0;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: rgb(255 255 255 / 2%);
+}
+
+.quiz__legend {
+  padding: 0 0 12px;
+  font-size: 15.5px;
+  font-weight: 650;
+  line-height: 1.4;
+  color: var(--ink);
+}
+
+.quiz__qid {
+  display: inline-block;
+  margin-right: 8px;
+  font-family: var(--mono);
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--ink-3);
+}
+
+/* ---------- option list ---------- */
+
+.quiz__options { display: grid; gap: 8px; }
+
+.quiz__option {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--surface-3);
+  cursor: pointer;
+  transition: border-color 140ms ease, background 140ms ease;
+}
+
+.quiz__option:hover { border-color: var(--accent-2); }
+.quiz__option:focus-within { outline: 2px solid var(--accent-2); outline-offset: 2px; }
+
+.quiz__option--on {
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 12%, var(--surface-3));
+}
+
+.quiz__radio { flex: none; margin: 3px 0 0; accent-color: var(--accent); }
+
+.quiz__option-text {
+  min-width: 0;
+  font-size: 14px;
+  line-height: 1.45;
+  color: var(--ink-2);
+  overflow-wrap: anywhere;
+}
+
+.quiz__option--on .quiz__option-text { color: var(--ink); }
+
+/* ---------- navigation ---------- */
+
+.quiz__nav { display: flex; gap: 10px; justify-content: space-between; }
+.quiz__nav .btn { min-width: 112px; }
+
+/* ---------- result summary ---------- */
+
+.quiz__result { display: grid; gap: 12px; }
+
+.quiz__eyebrow {
+  font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.quiz__mode {
+  font-size: clamp(26px, 6vw, 34px);
+  letter-spacing: -0.02em;
+  color: var(--accent);
+}
+
+.quiz__blurb { font-size: 13.5px; line-height: 1.55; color: var(--ink-2); max-width: 68ch; }
+
+.quiz__facts {
+  gap: 8px;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: rgb(255 255 255 / 2%);
+}
+
+@media (max-width: 420px) {
+  .quiz__card { padding: 12px; }
+  .quiz__nav { flex-wrap: wrap; }
+  .quiz__nav .btn { flex: 1 1 auto; min-width: 0; }
+}

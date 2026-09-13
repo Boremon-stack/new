@@ -8,3 +8,8 @@ venv/
 ml-prediction/models/*.joblib
 ml-prediction/models/metrics.txt
 .vercel
+
+# Node / Vite
+node_modules/
+dist/
+*.local

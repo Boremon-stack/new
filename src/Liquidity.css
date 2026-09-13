@@ -1,0 +1,187 @@
+/* Intelligent Liquidity Buffer -- layout only. Every colour is a token from styles.css;
+   the "Ledger" palette is WCAG-AA measured pair by pair, so no raw value appears here. */
+
+.lq__h {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.lq__horizon { display: flex; flex-wrap: wrap; gap: 6px; }
+
+.lq__statnote { margin-top: 4px; font-size: 11.5px; color: var(--ink-3); }
+
+.lq__assume {
+  padding: 10px 12px;
+  border: 1px solid var(--accent-line);
+  border-left-width: 3px;
+  border-radius: var(--radius-sm);
+  background: var(--accent-bg);
+  font-size: 12.5px;
+  color: var(--ink-2);
+}
+
+/* ---------- alerts ---------- */
+
+.lq__alerts { display: grid; gap: 10px; }
+
+.lq__alert {
+  display: grid;
+  gap: 6px;
+  padding: 12px 14px;
+  border: 1px solid var(--warn-line);
+  border-left-width: 4px;
+  border-radius: var(--radius-sm);
+  background: var(--warn-bg);
+}
+
+/* A shortfall no transfer can fix is a different problem, so it is a different object:
+   heavier rule, filled ground, and its own badge text. */
+.lq__alert--critical {
+  border-color: var(--danger-line);
+  border-left-width: 6px;
+  background: var(--danger-bg);
+}
+
+.lq__alert-top {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.lq__alert-line { font-size: 13px; color: var(--ink); }
+.lq__alert-why { font-size: 12.5px; color: var(--ink-2); }
+
+.lq__alert-fix {
+  padding: 8px 10px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--well);
+  font-size: 13px;
+  color: var(--ink);
+}
+
+/* ---------- calendar table ---------- */
+
+/* Own scroll container so the table never pushes the page sideways at 375px. */
+.lq__tablewrap {
+  max-width: 100%;
+  overflow-x: auto;
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius-sm);
+}
+
+.lq__table {
+  width: 100%;
+  min-width: 600px;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.lq__table caption {
+  padding: 10px 12px;
+  font-size: 12px;
+  color: var(--ink-3);
+  text-align: left;
+  border-bottom: 1px solid var(--line-soft);
+}
+
+.lq__table th,
+.lq__table td {
+  padding: 9px 12px;
+  text-align: left;
+  vertical-align: middle;
+  border-bottom: 1px solid var(--line-soft);
+}
+
+.lq__table thead th {
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  white-space: nowrap;
+}
+
+.lq__table tbody th { font-weight: 600; color: var(--ink); }
+
+.lq__monthrow th {
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--accent);
+  background: var(--surface-3);
+  border-bottom: 1px solid var(--line);
+  white-space: nowrap;
+}
+
+.lq__table tfoot th,
+.lq__table tfoot td {
+  border-bottom: 0;
+  border-top: 1px solid var(--line);
+  font-weight: 650;
+  background: var(--surface-3);
+}
+
+.lq__num {
+  text-align: right;
+  font-family: var(--mono);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+/* ---------- balance trajectories ---------- */
+
+.lq__tracks { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+
+.lq__track {
+  display: grid;
+  gap: 6px;
+  padding: 12px 14px;
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius-sm);
+  background: color-mix(in srgb, var(--ink) 2%, transparent);
+  min-width: 0;
+}
+
+.lq__track-top {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.lq__track-name { font-weight: 650; font-size: 13.5px; overflow-wrap: anywhere; }
+
+.lq__track-figure {
+  font-family: var(--mono);
+  font-size: 12.5px;
+  color: var(--ink-2);
+  white-space: nowrap;
+}
+
+/* preserveAspectRatio="none" stretches the path to the card width; the strokes carry
+   vector-effect="non-scaling-stroke" so nothing thickens with it. */
+.lq__spark {
+  display: block;
+  width: 100%;
+  height: 54px;
+  background: var(--well);
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius-sm);
+}
+
+.lq__track-note { font-size: 11.5px; color: var(--ink-3); }
+
+.lq__foot { font-size: 11.5px; color: var(--ink-3); }
+
+@media (max-width: 540px) {
+  .lq__table { font-size: 12.5px; }
+  .lq__table th, .lq__table td { padding: 8px 10px; }
+  .lq__alert { padding: 10px 11px; }
+  .lq__track { padding: 10px 11px; }
+}

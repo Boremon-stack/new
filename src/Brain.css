@@ -1,0 +1,111 @@
+/* Financial Brain -- layout only. Every colour comes from the Ledger tokens in
+   styles.css, including inside the SVG, where the stroke and fill attributes are
+   set to var(--accent) / var(--danger) rather than to a literal. */
+
+.br__h {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.br__note {
+  font-size: 12px;
+  color: var(--ink-3);
+  max-width: 78ch;
+}
+
+.br__reason {
+  font-size: 13px;
+  color: var(--ink-2);
+}
+
+/* ---------- projection ---------- */
+
+.br__seg { gap: 6px; }
+
+/* Own box so a 720-unit viewBox can stretch to any column width without the
+   page ever scrolling sideways at 375px. */
+.br__chartwrap {
+  max-width: 100%;
+  overflow: hidden;
+  padding: 8px 10px;
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius-sm);
+  background: var(--well);
+}
+
+.br__chart {
+  display: block;
+  width: 100%;
+  height: 160px;
+}
+
+.br__legend { gap: 8px; justify-content: space-between; }
+
+/* ---------- goal planner ---------- */
+
+.br__goalform {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: minmax(0, 1fr) 150px auto;
+  align-items: start;
+}
+
+.br__goalform > .btn { margin-top: 22px; }
+
+.br__ret { min-width: 0; }
+
+.br__echo { display: grid; gap: 12px; }
+
+.br__goals { display: grid; gap: 10px; }
+
+.br__goal,
+.br__instrow,
+.br__flag {
+  display: grid;
+  gap: 6px;
+  padding: 12px 14px;
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius-sm);
+  background: var(--well);
+}
+
+.br__goal-top {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 10px;
+  align-items: center;
+}
+
+.br__goal-top strong {
+  font-size: 14px;
+  font-weight: 650;
+  margin-right: auto;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+/* ---------- instruments / watchlist ---------- */
+
+.br__slab { align-items: flex-start; }
+.br__slab .field { max-width: 260px; }
+
+.br__inst,
+.br__flags { display: grid; gap: 10px; }
+
+@media (max-width: 720px) {
+  .br__goalform { grid-template-columns: minmax(0, 1fr); }
+  .br__goalform > .btn { margin-top: 0; }
+  .br__ret { max-width: 180px; }
+}
+
+@media (max-width: 540px) {
+  .br__chart { height: 130px; }
+  .br__goal,
+  .br__instrow,
+  .br__flag { padding: 10px 11px; }
+  .br__legend { gap: 6px; }
+  .br__slab .field { max-width: none; }
+}

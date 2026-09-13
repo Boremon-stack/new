@@ -1,0 +1,103 @@
+/* Portfolio module: layout only. Every colour is a token from styles.css -- the "Ledger" palette
+   is WCAG-AA measured pair by pair, so a raw hex or rgb value here would break that guarantee. */
+
+/* Live region stays in the DOM even when empty; it collapses to zero height. */
+.pf__live { display: grid; justify-items: start; }
+.pf__live .badge { max-width: 100%; overflow-wrap: anywhere; }
+
+/* Summary strip: invested, current, net P&L, monthly outflow. */
+.pf__summary {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(auto-fit, minmax(148px, 1fr));
+}
+
+.pf__statsub {
+  margin-top: 2px;
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--ink-3);
+}
+
+/* Inline expanding form -- not an overlay; the Settings panel owns the only modal. */
+.pf__form {
+  display: grid;
+  gap: 12px;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--well);
+}
+
+.pf__formhead {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.pf__formtitle { font-size: 14px; }
+.pf__formnote { font-size: 12px; color: var(--ink-3); }
+.pf__formact { display: flex; flex-wrap: wrap; gap: 8px; }
+
+/* Two labelled groups in one panel: holdings, then recurring debits. */
+.pf__group { display: grid; gap: 10px; min-width: 0; }
+
+.pf__grouphead {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.pf__grouptitle { font-size: 14px; }
+
+.pf__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.pf__row {
+  display: grid;
+  gap: 10px 14px;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  align-items: center;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--surface-3);
+}
+
+.pf__main { min-width: 0; display: grid; gap: 6px; }
+
+.pf__ident {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  font-weight: 650;
+  overflow-wrap: anywhere;
+}
+
+.pf__name { font-size: 12.5px; color: var(--ink-2); overflow-wrap: anywhere; }
+
+.pf__meta { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; min-width: 0; }
+.pf__meta .tag { overflow-wrap: anywhere; }
+
+.pf__val { min-width: 0; text-align: right; }
+.pf__valk { font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-3); }
+.pf__valv { font-family: var(--mono); font-size: 15px; font-weight: 600; overflow-wrap: anywhere; }
+.pf__valsub { font-family: var(--mono); font-size: 12px; color: var(--ink-3); }
+
+.pf__act { display: flex; }
+
+/* Rows stack at 375px; nothing may push the page into horizontal scroll. */
+@media (max-width: 560px) {
+  .pf__row { grid-template-columns: minmax(0, 1fr); }
+  .pf__val { text-align: left; }
+  .pf__act { justify-self: start; }
+}

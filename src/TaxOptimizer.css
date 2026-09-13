@@ -1,0 +1,176 @@
+/* Cross-Platform Tax Optimizer -- layout only. Every colour is a Ledger token from
+   styles.css; this file declares none of its own, so the measured AA contrast pairs hold. */
+
+.tx__h {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.tx__result { display: grid; gap: 14px; }
+
+.tx__link { color: var(--accent); }
+
+.tx__stat-sub {
+  margin-top: 4px;
+  font-size: 11.5px;
+  line-height: 1.4;
+  color: var(--ink-3);
+}
+
+.tx__note {
+  padding: 10px 12px;
+  border: 1px solid var(--warn-line);
+  border-radius: var(--radius-sm);
+  background: var(--warn-bg);
+  font-size: 12.5px;
+  color: var(--ink-2);
+}
+
+/* ---------- tables: own scroll container, so nothing pushes the page sideways at 375px ---------- */
+
+.tx__tablewrap {
+  max-width: 100%;
+  overflow-x: auto;
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius-sm);
+}
+
+.tx__table {
+  width: 100%;
+  min-width: 680px;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.tx__table caption {
+  padding: 10px 12px;
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--ink-3);
+  text-align: left;
+  border-bottom: 1px solid var(--line-soft);
+}
+
+.tx__table th,
+.tx__table td {
+  padding: 9px 12px;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid var(--line-soft);
+}
+
+.tx__table thead th {
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  white-space: nowrap;
+  vertical-align: bottom;
+}
+
+.tx__table tbody th { font-weight: 600; color: var(--ink); }
+
+.tx__table tfoot th,
+.tx__table tfoot td {
+  border-bottom: 0;
+  border-top: 1px solid var(--line);
+  font-weight: 650;
+  background: var(--surface-3);
+}
+
+.tx__num {
+  text-align: right;
+  font-family: var(--mono);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.tx__sym { font-weight: 650; }
+
+.tx__meta {
+  display: block;
+  margin-top: 3px;
+  font-size: 11px;
+  color: var(--ink-3);
+}
+
+/* ---------- harvesting candidates ---------- */
+
+.tx__cands {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 10px;
+}
+
+.tx__cand {
+  display: grid;
+  gap: 8px;
+  padding: 12px 14px;
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius-sm);
+  background: var(--well);
+}
+
+.tx__cand-head {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.tx__rank {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 999px;
+  font-family: var(--mono);
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--accent-ink);
+  background: var(--accent);
+}
+
+.tx__cand-figs {
+  display: grid;
+  gap: 4px 18px;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+}
+
+.tx__cand-figs > span { display: flex; flex-wrap: wrap; gap: 6px; align-items: baseline; }
+
+.tx__cand-note { font-size: 12.5px; color: var(--ink-2); }
+
+/* ---------- notes ---------- */
+
+.tx__list {
+  margin: 0;
+  padding-left: 20px;
+  display: grid;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--ink-2);
+}
+
+.tx__list li::marker { color: var(--accent); }
+
+.tx__foot {
+  padding: 10px 12px;
+  border: 1px dashed var(--line);
+  border-radius: var(--radius-sm);
+  font-size: 11.5px;
+  line-height: 1.5;
+  color: var(--ink-3);
+}
+
+@media (max-width: 540px) {
+  .tx__table { font-size: 12.5px; }
+  .tx__table th, .tx__table td { padding: 8px 10px; }
+  .tx__cand { padding: 10px 11px; }
+}

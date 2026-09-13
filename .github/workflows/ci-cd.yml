@@ -3,8 +3,11 @@ name: Vercel CI-CD
 on:
   pull_request:
   push:
+    # The default branch of this repository is `master`. The previous version of
+    # this workflow gated the deploy job on `refs/heads/main`, which does not
+    # exist here, so the deploy job had never run on a push.
     branches:
-      - main
+      - master
   workflow_dispatch:
 
 permissions:
@@ -21,22 +24,28 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "20"
+          cache: npm
 
-      - name: Check JavaScript syntax
-        run: |
-          node --check script.js
-          node --check api/ml-analyze.js
+      - name: Install dependencies
+        run: npm ci
 
-      - name: Verify required site files
+      - name: Run logic self-checks
+        run: npm test
+
+      - name: Build production bundle
+        run: npm run build
+
+      - name: Check serverless function syntax
+        run: node --check api/ml-analyze.js
+
+      - name: Verify build output
         run: |
-          test -f index.html
-          test -f styles.css
-          test -f script.js
-          test -f vercel.json
+          test -f dist/index.html
+          test -d dist/assets
 
   deploy:
     needs: validate
-    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository

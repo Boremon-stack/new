@@ -1,0 +1,122 @@
+/* Budget Blueprint -- layout only. Colours, buttons, badges and meters come from styles.css. */
+
+.bp__h {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+/* ---------- allocation rows (FR-BB-03) ---------- */
+
+.bp__alloc { display: grid; gap: 14px; }
+
+.bp__alloc-row {
+  display: grid;
+  gap: 6px;
+  padding: 12px 14px;
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius-sm);
+  background: rgb(255 255 255 / 2%);
+}
+
+.bp__alloc-top {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.bp__alloc-label { font-weight: 650; font-size: 14px; }
+
+.bp__alloc-figure {
+  font-family: var(--mono);
+  font-size: 13.5px;
+  color: var(--ink-2);
+  white-space: nowrap;
+}
+
+.bp__alloc-note { font-size: 12.5px; color: var(--ink-3); }
+
+/* ---------- actual vs planned (FR-BB-05, NFR-09) ---------- */
+
+/* Own scroll container so the table never pushes the page sideways at 375px. */
+.bp__tablewrap {
+  max-width: 100%;
+  overflow-x: auto;
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius-sm);
+}
+
+.bp__table {
+  width: 100%;
+  min-width: 520px;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.bp__table caption {
+  padding: 10px 12px;
+  font-size: 12px;
+  color: var(--ink-3);
+  text-align: left;
+  border-bottom: 1px solid var(--line-soft);
+}
+
+.bp__table th,
+.bp__table td {
+  padding: 9px 12px;
+  text-align: left;
+  vertical-align: middle;
+  border-bottom: 1px solid var(--line-soft);
+}
+
+.bp__table thead th {
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  white-space: nowrap;
+}
+
+.bp__table tbody th { font-weight: 600; color: var(--ink); }
+
+.bp__table tfoot th,
+.bp__table tfoot td {
+  border-bottom: 0;
+  border-top: 1px solid var(--line);
+  font-weight: 650;
+  background: var(--surface-3);
+}
+
+.bp__num {
+  text-align: right;
+  font-family: var(--mono);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+/* ---------- guardrails / insights ---------- */
+
+.bp__list {
+  margin: 0;
+  padding-left: 20px;
+  display: grid;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--ink-2);
+}
+
+.bp__list li::marker { color: var(--accent); }
+
+.bp__result { display: grid; gap: 12px; }
+
+.bp__foot { font-size: 11.5px; color: var(--ink-3); }
+
+@media (max-width: 540px) {
+  .bp__alloc-row { padding: 10px 11px; }
+  .bp__table { font-size: 12.5px; }
+  .bp__table th, .bp__table td { padding: 8px 10px; }
+}
