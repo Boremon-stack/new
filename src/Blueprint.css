@@ -18,7 +18,7 @@
   padding: 12px 14px;
   border: 1px solid var(--line-soft);
   border-radius: var(--radius-sm);
-  background: rgb(255 255 255 / 2%);
+  background: var(--surface-2);
 }
 
 .bp__alloc-top {

@@ -1,0 +1,259 @@
+/* ML Lab -- layout only. Every colour is a token from styles.css, inside the
+   SVG as well: the charts set fill / stroke to var(--accent), var(--ink-2),
+   var(--line) and var(--line-soft) rather than to a literal, so the AA-measured
+   pairs in the palette still hold here. No raw colour value appears in this file. */
+
+.ml__h {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.ml__note {
+  font-size: 13px;
+  color: var(--ink-2);
+  max-width: 78ch;
+}
+
+.ml__cap,
+.ml__minihint,
+.ml__foot {
+  font-size: 11.5px;
+  color: var(--ink-3);
+  max-width: 78ch;
+}
+
+.ml__value {
+  font-family: var(--mono);
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+}
+
+/* ---------- the generator string ---------- */
+
+.ml__gen {
+  display: grid;
+  gap: 6px;
+  padding: 10px 12px;
+  border: 1px solid var(--accent-line);
+  border-left-width: 3px;
+  border-radius: var(--radius-sm);
+  background: var(--accent-bg);
+}
+
+.ml__gen-k {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+/* The generator arrives as a multi-line string with its own indentation, so the
+   newlines are kept. It is also the one thing here a reader may want to copy,
+   which is why it wraps rather than scrolling sideways. */
+.ml__gen-v {
+  font-family: var(--mono);
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--ink);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+/* ---------- controls ---------- */
+
+.ml__controls {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  align-items: start;
+}
+
+.ml__sliders {
+  display: grid;
+  gap: 12px 16px;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  align-items: start;
+}
+
+.ml__controls input[type="range"],
+.ml__sliders input[type="range"] {
+  width: 100%;
+  padding: 0;
+  background: none;
+  border: 0;
+  accent-color: var(--accent);
+}
+
+.ml__arch {
+  display: grid;
+  gap: 6px;
+  padding: 12px 14px;
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius-sm);
+  background: var(--well);
+}
+
+.ml__legend { gap: 8px; }
+
+.ml__live {
+  font-size: 12.5px;
+  color: var(--ink-2);
+  min-height: 1.5em;
+}
+
+.ml__verdict {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: baseline;
+  padding: 12px 14px;
+  border: 1px solid var(--line-soft);
+  border-left-width: 4px;
+  border-radius: var(--radius-sm);
+  background: var(--well);
+  font-size: 13px;
+  color: var(--ink-2);
+  max-width: 78ch;
+}
+
+/* The badge is a fixed marker; the sentence beside it takes the rest of the row
+   and wraps inside its own flex item. */
+.ml__verdict .badge { flex: none; }
+
+/* ---------- charts ---------- */
+
+/* Own box so a 440-unit viewBox never pushes the page sideways at 375px. */
+.ml__chartwrap {
+  max-width: 100%;
+  overflow: hidden;
+  padding: 8px 10px;
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius-sm);
+  background: var(--well);
+}
+
+/* viewBox + width:100% means the chart scales instead of scrolling. The cap is
+   what keeps the scale factor -- and so the tick text, which scales with it --
+   inside a readable band between a 375px phone and a 1180px board. */
+.ml__chart {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 560px;
+  margin: 0 auto;
+}
+
+.ml__chart--bars { max-width: 620px; }
+
+.ml__tick {
+  fill: var(--ink-3);
+  font-family: var(--mono);
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+}
+
+.ml__tick--sm { font-size: 11px; }
+
+/* ---------- per-feature minis ---------- */
+
+.ml__mini {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+}
+
+.ml__minicard {
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+  padding: 10px 12px;
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius-sm);
+  background: var(--well);
+}
+
+.ml__minicard .ml__chart { max-width: none; }
+
+.ml__minihead {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 8px;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.ml__minihead strong {
+  font-size: 12.5px;
+  font-weight: 650;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+/* ---------- tables ---------- */
+
+.ml__tablewrap {
+  max-width: 100%;
+  overflow-x: auto;
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius-sm);
+}
+
+.ml__table {
+  width: 100%;
+  min-width: 480px;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.ml__table caption {
+  padding: 10px 12px;
+  font-size: 12px;
+  color: var(--ink-3);
+  text-align: left;
+  border-bottom: 1px solid var(--line-soft);
+}
+
+.ml__table th,
+.ml__table td {
+  padding: 9px 12px;
+  text-align: left;
+  vertical-align: middle;
+  border-bottom: 1px solid var(--line-soft);
+}
+
+.ml__table thead th {
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  white-space: nowrap;
+}
+
+.ml__table tbody th { font-weight: 600; color: var(--ink); }
+
+.ml__table tfoot th,
+.ml__table tfoot td {
+  border-bottom: 0;
+  border-top: 1px solid var(--line);
+  font-weight: 650;
+  background: var(--surface-3);
+}
+
+.ml__num {
+  text-align: right;
+  font-family: var(--mono);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+@media (max-width: 540px) {
+  .ml__table { font-size: 12.5px; }
+  .ml__table th, .ml__table td { padding: 8px 10px; }
+  .ml__chartwrap { padding: 6px 6px; }
+  .ml__minicard { padding: 8px 10px; }
+  .ml__mini { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
+}

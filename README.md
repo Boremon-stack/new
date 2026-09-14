@@ -27,6 +27,7 @@ and the cross-broker tax optimiser.
 | Intelligent Liquidity Buffer | Outflow calendar, bounce prediction, transfer instructions | `src/Liquidity.jsx`, `src/lib/liquidity.js` |
 | Financial Brain | Balance projection, natural-language goal planning, instrument fit | `src/Brain.jsx`, `src/lib/forecast.js` |
 | Cross-Platform Tax Optimizer | STCG/LTCG across brokers, tax-loss harvesting | `src/TaxOptimizer.jsx`, `src/lib/tax.js` |
+| Model | A neural network trained live in the browser, with its data, training curve and held-out scores | `src/MLLab.jsx`, `src/lib/nn.js` |
 | Nominee Vault | 48-day inactivity protocol and AES-256-GCM sealed disclosure | `src/NomineeVault.jsx`, `src/lib/vault.js`, `src/lib/crypto.js` |
 
 ## Quick start
@@ -44,7 +45,7 @@ Password   FinNexus@2026
 ```
 
 ```bash
-npm test         # 56 logic self-checks
+npm test         # 69 logic self-checks
 npm run build    # production bundle into dist/
 npm run preview  # serve the built bundle
 ```
@@ -86,13 +87,18 @@ chart library — currency uses `Intl.NumberFormat('en-IN')`, and the charts are
 
 ### Colour system
 
-The palette is called **Ledger** and is defined once as custom properties at the top of
-`src/styles.css`: a desaturated indigo-slate ground, warm paper-white type, a brass accent that also
-carries "needs attention" so warnings add no sixth hue, sage for positive and terracotta for
-negative. Every foreground/background pair the interface renders is measured against WCAG 2.1 AA —
-4.5:1 for text, 3:1 for the focus ring — with `--ink-3` on `--surface-2` the tightest at 4.61:1.
-Module stylesheets declare no colours of their own, so the whole interface re-themes from that one
-block. Changing a token means re-running the contrast check.
+The palette is called **Statement** and is defined once as custom properties at the top of
+`src/styles.css`: a cool off-white page with white cards, deep navy ink, a banking-blue accent, deep
+green for gains, deep red for losses and burnt orange for advisory flags. Green and red earn their
+place rather than being decoration — in a financial interface they are the reader's existing
+vocabulary for direction. Every foreground/background pair the interface renders is measured against
+WCAG 2.1 AA — 4.5:1 for text, 3:1 for the focus ring — with `--ink-3` on `--bg` the tightest at
+4.63:1. Body text is set in tabular figures so rupee columns align on the decimal. Module
+stylesheets declare no colours of their own, so the whole interface re-themes from that one block.
+Changing a token means re-running the contrast check.
+
+The Control Center is a tablist: one panel at a time, moved between with clicks or arrow keys.
+Eight panels shown at once read as clutter, and no two of them need to be seen side by side.
 
 ### Honest labelling
 
@@ -106,13 +112,40 @@ The AES-256-GCM sealing is real encryption, and its limit is stated in the modul
 never stored and never leaves the tab, which also means FinNexus cannot open a sealed vault for the
 nominee. Delivering that passphrase is a key-escrow problem this build does not solve.
 
+## The model, and what it does not claim
+
+The **Model** tab fits a small neural network — 6 inputs, 8 `tanh` hidden units, 1 linear output,
+about 65 parameters — entirely in the browser. Weights are `Float64Array`s, the gradients are
+hand-derived backpropagation, and there is no ML dependency: no TensorFlow.js, no ml-matrix.
+
+It trains on **synthetic rows from a formula printed in the panel**, not on real user data, and the
+interface says so. The formula is deliberately non-linear — debt pressure bites harder when
+emergency cover is thin, and investment habit saturates — so the network has something a straight
+line cannot reach. That is why the panel always shows a **least-squares baseline beside the
+network** on the same held-out rows: it is the reader's check on whether the network earns its
+complexity, and the honest answer is displayed either way.
+
+At the default settings the baseline scores R² 0.954 and the network 0.998, MAE 3.55 against 0.63.
+The structural ceiling is measured rather than asserted: ordinary least squares on 20,000 noiseless
+rows from the same generator reaches only R² 0.954, so roughly 4.6% of the variance is permanently
+unreachable by any linear model. Across seeds 1–12 the network led on every seed.
+
+Correctness rests on a finite-difference gradient check, not on the loss curve falling — a wrong
+gradient still produces a falling curve. The analytic gradients agree with a central difference to
+3.1e-11.
+
+What this is not: it is not trained on Indian household data, and it is not the risk engine. The
+20-question quiz remains rule-based, deliberately. Risk profiling by supervised learning needs
+labelled outcomes — whether a household actually defaulted or met its goal — which no one in this
+project has, and inventing them would be the dishonest move.
+
 ## Testing
 
 ```bash
 npm test
 ```
 
-56 checks across seven pure-logic modules, run by the Node test runner with no framework. They cover
+69 checks across eight pure-logic modules, run by the Node test runner with no framework. They cover
 the risk-scoring bands and their safety cap, budget allocations that must sum exactly to income,
 capital-gains boundaries at 12 and 24 months, the loss-offset asymmetry between short- and long-term
 losses, financial-year derivation, natural-language goal parsing, annuity arithmetic, the countdown

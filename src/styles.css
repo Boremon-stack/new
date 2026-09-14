@@ -1,58 +1,62 @@
 /* FinNexus shared design system. Module CSS files add layout only --
    colours, spacing, buttons, fields and badges all come from here.
 
-   Palette "Ledger". Five hues, each with one job, chosen against the register
-   of Indian financial paper rather than the default neon-on-black dashboard:
+   Palette "Statement". Light, the way financial paper actually is: a bank
+   statement, an annual report, a term sheet. The previous dark board made seven
+   panels read as far busier than they are.
 
-     1. ground   desaturated indigo-slate, the ink of a printed ledger
-     2. type     warm paper off-white, never a blue-white
-     3. accent   brass -- also carries "needs attention", so warn adds no hue
-     4. positive sage, a muted green that sits inside the same low chroma
-     5. negative terracotta, not a saturated alert red
+     1. ground   cool off-white page, white cards -- paper, not a terminal
+     2. type     deep navy-black ink
+     3. accent   banking blue, for structure and action
+     4. gain     deep green, the convention for money going up
+     5. loss     deep red, the convention for money going down
+     6. caution  burnt orange, advisory flags only -- never gold, never brass
 
-   Every foreground/background pair used in the UI is measured against WCAG 2.1
-   AA (4.5:1 for text, 3:1 for the focus ring); the lowest pair in the set is
-   --ink-3 on --surface-2 at 4.61:1. Changing a value here means re-measuring. */
+   Green and red earn their place here rather than being decoration: in a
+   financial interface they are the reader's existing vocabulary for direction.
+   Every foreground/background pair the UI renders is measured against WCAG 2.1
+   AA (4.5:1 text, 3:1 focus ring); the tightest is --ink-3 on --bg at 4.63:1.
+   Changing a value here means re-measuring. */
 
 :root {
   /* ground */
-  --bg: #131620;
-  --surface: #191d28;
-  --surface-2: #1e2331;
-  --surface-3: #272d3d;
-  --well: #0f121a;
-  --line: #333a4d;
-  --line-soft: #242a38;
+  --bg: #eef2f7;
+  --surface: #ffffff;
+  --surface-2: #f7f9fc;
+  --surface-3: #e7eef7;
+  --well: #f4f7fb;
+  --line: #cfdae8;
+  --line-soft: #e3ebf4;
 
   /* type */
-  --ink: #eceae3;
-  --ink-2: #b0aba1;
-  --ink-3: #8e8b84;
+  --ink: #0f1c2e;
+  --ink-2: #41536b;
+  --ink-3: #586a84;
 
-  /* accent: brass */
-  --accent: #d9a441;
-  --accent-2: #e6c57e;
-  --accent-ink: #1b1507;
-  --accent-bg: #2a2110;
-  --accent-line: #4a3a17;
+  /* accent: banking blue */
+  --accent: #17539e;
+  --accent-2: #2f7ad1;
+  --accent-ink: #ffffff;
+  --accent-bg: #e8f0fb;
+  --accent-line: #b9d0ee;
 
   /* semantic */
-  --ok: #7ba97f;
-  --ok-bg: #16241a;
-  --ok-line: #2e4733;
-  --warn: var(--accent);
-  --warn-bg: var(--accent-bg);
-  --warn-line: var(--accent-line);
-  --danger: #d9806b;
-  --danger-bg: #2a1613;
-  --danger-line: #4c2b23;
+  --ok: #1f6b45;
+  --ok-bg: #e6f3ec;
+  --ok-line: #b5d8c5;
+  --warn: #9a4f13;
+  --warn-bg: #fdf0e6;
+  --warn-line: #f2cdae;
+  --danger: #a32b2b;
+  --danger-bg: #fbeaea;
+  --danger-line: #edc2c2;
 
-  --radius: 14px;
-  --radius-sm: 9px;
-  --shadow: 0 18px 44px rgb(0 0 0 / 45%);
+  --radius: 12px;
+  --radius-sm: 8px;
+  --shadow: 0 1px 2px rgb(15 28 46 / 6%), 0 8px 24px rgb(15 28 46 / 6%);
   --mono: ui-monospace, "SF Mono", "Cascadia Mono", Menlo, Consolas, monospace;
   --sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  color-scheme: dark;
+  color-scheme: light;
 }
 
 * { box-sizing: border-box; }
@@ -65,11 +69,14 @@ body {
   font-size: 15px;
   line-height: 1.55;
   color: var(--ink);
-  /* One low-contrast wash, not a pair of coloured glows. */
+  /* Proportional digits make every rupee column ragged. Tabular figures line
+     the decimals up down a table, which is most of what separates a finance
+     interface from a generic dashboard. */
+  font-variant-numeric: tabular-nums;
+  /* A single cool wash at the top of the page, nothing more. */
   background:
-    radial-gradient(1200px 700px at 50% -20%, #1a1e2b, transparent 72%),
+    radial-gradient(1100px 640px at 50% -22%, #e3ebf6, transparent 72%),
     var(--bg);
-  -webkit-font-smoothing: antialiased;
 }
 
 h1, h2, h3, h4 { margin: 0; line-height: 1.25; font-weight: 650; letter-spacing: -0.01em; }
@@ -108,36 +115,43 @@ button { font: inherit; }
   display: grid; place-items: center; width: 38px; height: 38px;
   border-radius: 11px; font-size: 13px; font-weight: 800; letter-spacing: 0.04em;
   color: var(--accent-ink);
-  background: linear-gradient(155deg, var(--accent-2), var(--accent));
+  background: var(--accent);
 }
 
 .topbar__right { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
 .topbar__user { font-family: var(--mono); font-size: 12px; color: var(--ink-2); }
 
-/* Section nav: seven panels is too many to scan, so the shell offers anchors.
-   Plain in-page links -- no router, the Control Center is one document. */
+/* Section tabs. Seven panels shown at once read as clutter; one at a time reads
+   as a tool. These are real buttons in an ARIA tablist, so arrow keys move
+   between them and the whole bar is a single stop in the tab order. */
 .secnav {
-  position: sticky; top: 62px; z-index: 15;
-  display: flex; gap: 4px; overflow-x: auto;
-  padding: 8px clamp(14px, 4vw, 34px);
-  background: color-mix(in srgb, var(--bg) 92%, transparent);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid var(--line-soft);
+  position: sticky; top: 61px; z-index: 15;
+  display: flex; gap: 2px; overflow-x: auto;
+  padding: 0 clamp(10px, 4vw, 30px);
+  background: var(--surface);
+  border-bottom: 1px solid var(--line);
   scrollbar-width: thin;
 }
 .secnav__link {
   flex: none;
-  padding: 5px 11px;
-  border-radius: 999px;
-  font-size: 12.5px; font-weight: 600; text-decoration: none;
+  position: relative;
+  padding: 13px 14px;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  background: none;
   color: var(--ink-3);
-  border: 1px solid transparent;
-  transition: color 140ms ease, background 140ms ease, border-color 140ms ease;
+  font-size: 13.5px; font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: color 140ms ease, border-color 140ms ease;
 }
-.secnav__link:hover { color: var(--ink); background: var(--surface-3); border-color: var(--line); }
+.secnav__link:hover { color: var(--ink); }
+.secnav__link[aria-selected="true"] {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
 
-/* Anchored panels must clear both sticky bars when jumped to. */
-.panel[id] { scroll-margin-top: 116px; }
+[hidden] { display: none !important; }
 
 .board {
   flex: 1;
@@ -159,7 +173,7 @@ button { font: inherit; }
 /* ---------- panel ---------- */
 
 .panel {
-  background: linear-gradient(180deg, var(--surface-2), var(--surface));
+  background: var(--surface);
   border: 1px solid var(--line);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
@@ -170,7 +184,7 @@ button { font: inherit; }
   display: flex; flex-wrap: wrap; gap: 10px 14px; align-items: flex-start; justify-content: space-between;
   padding: 16px 18px;
   border-bottom: 1px solid var(--line-soft);
-  background: rgb(255 255 255 / 2%);
+  background: var(--surface-2);
 }
 
 .panel__title { font-size: 16px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
@@ -185,24 +199,23 @@ button { font: inherit; }
   padding: 9px 15px;
   border-radius: var(--radius-sm);
   border: 1px solid var(--line);
-  background: var(--surface-3);
+  background: var(--surface);
   color: var(--ink);
   font-size: 13.5px; font-weight: 600;
   cursor: pointer;
   transition: background 140ms ease, border-color 140ms ease, transform 80ms ease, opacity 140ms ease;
 }
-.btn:hover:not(:disabled) { background: #2f3648; border-color: #414a60; }
+.btn:hover:not(:disabled) { background: var(--surface-3); border-color: var(--accent-line); }
 .btn:active:not(:disabled) { transform: translateY(1px); }
 .btn:disabled { opacity: 0.45; cursor: not-allowed; }
 
 .btn--primary {
   border-color: transparent;
   color: var(--accent-ink);
-  background: linear-gradient(155deg, var(--accent-2), var(--accent));
+  background: var(--accent);
 }
 .btn--primary:hover:not(:disabled) {
-  filter: brightness(1.06);
-  background: linear-gradient(155deg, var(--accent-2), var(--accent));
+  background: var(--accent-2);
   border-color: transparent;
 }
 
@@ -210,7 +223,7 @@ button { font: inherit; }
 .btn--ghost:hover:not(:disabled) { background: var(--surface-3); color: var(--ink); }
 
 .btn--danger { background: transparent; border-color: var(--danger-line); color: var(--danger); }
-.btn--danger:hover:not(:disabled) { background: var(--danger-bg); border-color: #603429; }
+.btn--danger:hover:not(:disabled) { background: var(--danger-bg); border-color: var(--danger); }
 
 .btn--sm { padding: 6px 11px; font-size: 12.5px; }
 .btn--block { width: 100%; }
@@ -275,7 +288,7 @@ button { font: inherit; }
   text-align: center;
   color: var(--ink-3);
   font-size: 13.5px;
-  background: rgb(255 255 255 / 2%);
+  background: var(--surface-2);
 }
 
 .stack { display: grid; gap: 12px; }
