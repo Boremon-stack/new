@@ -322,6 +322,19 @@ hr.sep { border: 0; border-top: 1px solid var(--line-soft); margin: 2px 0; }
   .panel__body { padding: 14px; }
 }
 
+/* Touch targets. The compact controls are ~28px tall, which is fine for a mouse
+   and too small for a finger -- Apple's guidance is 44px, WCAG 2.5.5 asks 44px and
+   2.5.8 a 24px floor. Coarse pointers get the bigger target; mouse layout is
+   untouched, so the dense desktop board does not grow. */
+@media (pointer: coarse) {
+  .btn { min-height: 44px; padding-inline: 18px; }
+  .btn--sm { min-height: 40px; padding: 8px 14px; font-size: 13.5px; }
+  .secnav { padding-block: 10px; }
+  .secnav__link { min-height: 38px; display: inline-flex; align-items: center; }
+  .field input, .field select, .field textarea, .field__input { min-height: 44px; }
+  input[type="radio"], input[type="checkbox"] { min-width: 22px; min-height: 22px; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   * { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
 }
